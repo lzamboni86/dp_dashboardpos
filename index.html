@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Controle de POs - Login</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Acessar</button>
+        </form>
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const users = [
+                { user: 'Luis', pass: 'Br@sil_2022' },
+                { user: 'Ton', pass: 'DP@2025' }
+            ];
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            const validUser = users.find(u => u.user === username && u.pass === password);
+            
+            if(validUser) {
+                localStorage.setItem('authenticated', 'true');
+                window.location.href = 'dashboard.html';
+            } else {
+                errorMessage.textContent = 'Credenciais inválidas!';
+            }
+        });
+    </script>
+</body>
+</html>

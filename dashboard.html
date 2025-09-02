@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Executivo</title>
+
+  <!-- Fonte e Ícones -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="dashboard.css">
+
+  <!-- Chart.js e XLSX -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>📊 Dashboard Executivo</h1>
+    <button onclick="logout()">Sair</button>
+  </header>
+
+  <main>
+    <div class="upload-box">
+      <label for="excelUpload"><strong>Carregar Arquivo Excel:</strong></label>
+      <input type="file" id="excelUpload" accept=".xlsx,.xls">
+    </div>
+
+    <div class="cards-container"></div>
+
+    <div class="charts">
+      <div class="chart-card">
+        <h2>Distribuição por Status</h2>
+        <canvas id="statusChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h2>Distribuição por Etapa</h2>
+        <canvas id="etapaChart"></canvas>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <div class="table-header">
+        <h2>Detalhes das POs</h2>
+        <button onclick="exportTable()">Exportar Excel</button>
+      </div>
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th>Região</th>
+            <th>Etapa</th>
+            <th>Produto</th>
+            <th>PO Number</th>
+            <th>Data Criação</th>
+            <th>Status</th>
+            <th>Due Date</th>
+            <th>Fornecedor</th>
+            <th>Rastreio</th>
+            <th>Last Update</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Script principal -->
+  <script src="script.js"></script>
+  <script>
+    function logout() {
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+
+    function exportTable() {
+      const wb = XLSX.utils.table_to_book(document.getElementById('dataTable'), { sheet: "POs" });
+      XLSX.writeFile(wb, "dashboard_export.xlsx");
+    }
+  </script>
+</body>
+</html>

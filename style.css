@@ -1,0 +1,42 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f6fa;
+}
+
+/* Login */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+/* Dashboard */
+.dashboard-header {
+    
+}
+
+.cards-container {
+    
+}
+
+.card {
+    
+}
+
+#excelUpload {
+    
+}
+
+/* Tabela */
+.data-table {
+
+}
